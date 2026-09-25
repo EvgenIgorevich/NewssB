@@ -1,1 +1,34 @@
+name: Еженедельный мониторинг логистики
 
+# Когда запускать: CRON-выражение
+# Каждую среду в 10:00 утра по Москве (это 07:00 UTC)
+on:
+  schedule:
+    - cron: '0 7 * * 3'
+  # Кнопка для ручного запуска (на случай тестов)
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest # Название операционной системы робота
+
+    steps:
+      # Шаг 1: Скачать ваш код из этого репозитория на рабочий стол сервера
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Шаг 2: Установить программу Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Версия языка
+
+      # Шаг 3: Установить библиотеки (requests для интернета, beautifulsoup4 для чтения сайтов)
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      # Шаг 4: Запустить наш файл!
+      - name: Run the bot script
+        run: python main.py
