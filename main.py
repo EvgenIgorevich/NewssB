@@ -5,7 +5,7 @@ from datetime import datetime
 import logging
 import re
 
-# --- 1. НАСТРОЙКА ---
+# --- 1. НАСТРОЙКА  ---
 TELEGRAM_TOKEN = "8753776194:AAHzwXLTApxGh4J_LAgCGLneDcpd8aEnIsg"
 TG_CHAT_ID = "-1004421613528"
 
